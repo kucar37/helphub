@@ -1,17 +1,13 @@
-# Windows system files (Junk)
+# Windows junk
 Thumbs.db
 Desktop.ini
 
-# Mac system files (If your teachers open it on a Mac)
-.DS_Store
-
-# Editor settings (Personal preferences, don't share these)
+# Editor settings
 .vscode/
 .idea/
-*.sublime-workspace
 
-# Security (NEVER upload these!)
+# Security
 .env
 
-# PHP Dependencies (We usually download these, not upload them)
+# PHP Dependencies
 /vendor/
