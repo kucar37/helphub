@@ -8,8 +8,155 @@ header {
     background-color: #663366; 
     padding: 20px;
     color: white;
+    height: 4vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+header, nav, a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-pic {
+    width: 40px;        
+    height: 40px;       
+    border-radius: 50%; 
+    object-fit: cover;  
+}
+
+.header-right {
+    display: flex;
+    align-items: center; 
+    gap: 15px;          
+}
+
+.dashboard-container {
+    max-width: 1200px; 
+    margin: 0 auto;    
+    padding: 30px 20px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 30px; 
+    align-items: start; 
+}
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #28170B; 
+    margin: 0;      
+}
+
+.btn-primary {
+    background-color: #663366; 
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;       
+    text-decoration: none;    
+    font-weight: bold;
+    transition: background-color 0.2s; 
+}
+
+.btn-primary:hover {
+    background-color: hsl(293, 93%, 16%); 
+}
+
+.section-title {
+    color: #28170B;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Request Card */
+.request-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    border: 1px solid #F3E9D9;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #6B4F35; 
+}
+
+.request-card h4 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    color: #28170B;
+}
+
+.card-text {
+    color: #4a5568;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    background-color: #F3E9D9; 
+    color: #663366;           
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btn-small {
+    background-color: #663366;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+
+.btn-small:hover {
+    opacity: 0.9;
+}
+
+/* mobile phones */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr; 
+    }
 }
