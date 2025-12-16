@@ -52,7 +52,34 @@ include 'includes/header.php';
         </div>
 
         <div class="right-column">
-            <h3>My Activity</h3>
+            <h3 class="section-title">My Activity</h3>
+            <div class="sidebar-card">
+                <ul class="activity-list">
+                    <li class="activity-item">
+                        <div class="activity-details">
+                            <span class="activity-name">Database Schema Help</span>
+                            <span class="status-badge status-pending">Pending</span>
+                        </div>
+                    </li>
+                    <li class="activity-item">
+                        <div class="activity-details">
+                            <span class="activity-name">React State Management</span>
+                            <span class="status-badge status-progress">In Progress</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 class="section-title" style="margin-top: 30px;">Notifications</h3>
+            <div class="sidebar-card">
+                <ul class="activity-list">
+                    <li class="notification-item">
+                        <span class="material-symbols-outlined icon-green">check_circle</span>
+                        <p><strong>Jane Doe</strong> accepted your help.</p>
+                    </li>
+                </ul>
+            </div>
+
         </div>
     </div>
 
