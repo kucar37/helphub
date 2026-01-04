@@ -1,15 +1,31 @@
-<?php include 'includes/header.php'; ?>
+<?php
+include 'includes/db.php';
+include 'includes/header.php';
+
+$user_id = $_GET['id'] ?? 1;
+
+// prepare statement
+$stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+$stmt->execute(['id' => $user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// check if user exists
+if (!$user) {
+    // maybe can redirect to 404.php later
+    die("User not found!");
+}
+?>
 
 <main class="dashboard-container">
 
     <div class="profile-header-card">
         <div class="profile-info">
             <div class="profile-avatar-container">
-                <img src="https://i.pravatar.cc/300?img=11" alt="Alex Doe" class="profile-avatar-lg">
+                <img src="https://i.pravatar.cc/300?img=11" alt="<?= htmlspecialchars($user['full_name']) ?>" class="profile-avatar-lg">
             </div>
             <div class="profile-text">
-                <h1>Alex Doe</h1>
-                <p>ICT & Software Engineering</p>
+                <h1><?= htmlspecialchars($user['full_name']) ?></h1>
+                <p><?= htmlspecialchars($user['study_program']) ?></p>
             </div>
         </div>
         <a href="edit_profile.php" class="btn-purple icon-btn">
@@ -24,7 +40,9 @@
 
             <div class="content-card">
                 <h3>About Me</h3>
-                <p class="text-gray">Passionate ICT & Software Engineering student with a keen interest in front-end development and UI/UX design. I enjoy collaborating on projects and solving complex problems. Currently exploring Python for data analysis.</p>
+                <p class="bio-text">
+                    <?= htmlspecialchars($user['bio'] ?? 'No bio yet.') ?>
+                </p>
             </div>
 
             <div class="content-card">
@@ -51,27 +69,33 @@
                 <h3>Academic Details</h3>
                 <div class="detail-row">
                     <span class="label">Student Number:</span>
-                    <span class="value">1234567</span>
+                    <span class="value"><?= htmlspecialchars($user['student_number']) ?></span>
                 </div>
                 <div class="detail-row">
                     <span class="label">Semester:</span>
-                    <span class="value">4</span>
+                    <span class="value"><?= htmlspecialchars($user['semester']) ?></span>
                 </div>
                 <div class="detail-row">
                     <span class="label">Start Year:</span>
-                    <span class="value">2022</span>
+                    <span class="value"><?= htmlspecialchars($user['start_year']) ?></span>
                 </div>
             </div>
 
             <div class="content-card">
                 <h3>Contact Information</h3>
+
                 <div class="contact-row">
                     <span class="material-symbols-outlined icon-small">mail</span>
-                    <a href="mailto:1234567@student.fontys.nl">1234567@student.fontys.nl</a>
+                    <a href="mailto:<?= htmlspecialchars($user['email']) ?>">
+                        <?= htmlspecialchars($user['email']) ?>
+                    </a>
                 </div>
+
                 <div class="contact-row">
                     <span class="material-symbols-outlined icon-small">link</span>
-                    <a href="#">linkedin.com/in/alexdoe</a>
+                    <a href="<?= htmlspecialchars($user['linkedin_url']) ?>" target="_blank">
+                        linkedin.com/in/alexdoe
+                    </a>
                 </div>
             </div>
 
@@ -87,14 +111,16 @@
                 <h3>Skills & Talents</h3>
                 <p class="text-small text-gray">Add tags to showcase your skills to others.</p>
                 <div class="tags-container">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">UI/UX Design</span>
-                    <span class="skill-tag">Project Management</span>
-                    <span class="skill-tag">Figma</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">HTML & CSS</span>
-                    <span class="skill-tag">Teamwork</span>
+                    <?php
+                    if (!empty($user['skills'])) {
+                        $skills_array = explode(',', $user['skills']);
+                        foreach ($skills_array as $skill) {
+                            echo '<span class="skill-tag">' . htmlspecialchars(trim($skill)) . '</span>';
+                        }
+                    } else {
+                        echo '<span class="no-skills">No skills listed yet.</span>';
+                    }
+                    ?>
                 </div>
             </div>
 
@@ -111,18 +137,6 @@
                         </div>
                         <p class="project-ref">For "UI/UX feedback for personal project"</p>
                         <p class="quote">"Alex was incredibly helpful and gave very constructive feedback. Explained complex concepts in a simple way. Highly recommend!"</p>
-                    </div>
-                </div>
-
-                <div class="feedback-item">
-                    <img src="https://i.pravatar.cc/150?img=12" class="avatar-small">
-                    <div class="feedback-content">
-                        <div class="feedback-header">
-                            <span class="name">Michael B.</span>
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-                        </div>
-                        <p class="project-ref">For "Help needed with Python data structures"</p>
-                        <p class="quote">"A real Python wizard! Alex helped me understand dictionaries and lists much better. Saved my assignment!"</p>
                     </div>
                 </div>
             </div>
