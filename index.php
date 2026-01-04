@@ -70,7 +70,7 @@ include 'includes/header.php';
                 </ul>
             </div>
 
-            <h3 class="section-title" style="margin-top: 30px;">Notifications</h3>
+            <h3 class="section-title mt-large">Notifications</h3>
             <div class="sidebar-card">
                 <ul class="activity-list">
                     <li class="notification-item">

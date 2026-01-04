@@ -493,10 +493,9 @@ a {
   color: #1e40af;
 }
 
-
 .bio-text {
-  word-break: break-word; 
-  color: #666; 
+  word-break: break-word;
+  color: #666;
   line-height: 1.6;
 }
 
@@ -504,6 +503,52 @@ a {
   font-style: italic;
   color: #999;
   font-size: 13px;
+}
+
+/* login page */
+.login-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  min-height: 600px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.error-message {
+  color: #d32f2f;
+  background-color: #ffebee;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-input:focus {
+  border-color: #663366;
+  outline: none;
+}
+
+.mt-large {
+  margin-top: 30px;
 }
 
 /* mobile phones */

@@ -2,7 +2,7 @@
 include 'includes/db.php';
 include 'includes/header.php';
 
-$user_id = $_GET['id'] ?? 1;
+$user_id = $_GET['id'] ?? $_SESSION['user_id'];
 
 // prepare statement
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");

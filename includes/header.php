@@ -1,9 +1,20 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// if not logged in redirect to login.php
+if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php') {
+    header("Location: login.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8" />
-    <title>Fontys HelpHub</title>
+    <title>Fontys ConnectICT</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
@@ -27,6 +38,6 @@
                 <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="profile-pic">
             </a>
 
-            <a href="#">Logout</a>
+            <a href="logout.php">Logout</a>
         </div>
     </header>
