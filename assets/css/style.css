@@ -1,25 +1,52 @@
+:root {
+  --primary: #663366;
+  --primary-hover: #502250;
+  --bg-body: #f9fafb;
+  --surface: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #fffbef;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  line-height: 1.6;
 }
 
 header {
-  background-color: #663366;
-  padding: 20px;
-  color: white;
-  height: 4vh;
+  background-color: var(--primary);
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  height: 70px;
+  padding: 0 30px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
-header,
-nav,
-a {
+header a {
   color: white;
   text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+header a:hover {
+  opacity: 0.8;
+}
+
+.header-center {
+  display: flex;
+  gap: 30px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .profile-pic {
@@ -27,12 +54,7 @@ a {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .dashboard-container {
@@ -43,11 +65,16 @@ a {
 
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
+  grid-template-columns: 1fr 350px;
+  gap: 40px;
   align-items: start;
 }
 
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .welcome-section {
   display: flex;
   justify-content: space-between;
@@ -84,12 +111,29 @@ a {
 
 /* Request Card */
 .request-card {
-  background-color: white;
-  border-radius: 12px;
+  background-color: var(--surface);
+  border-radius: 16px;
   padding: 24px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-  border: 1px solid #f3e9d9;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.request-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
+}
+
+.tags .tag {
+  background-color: #f3e8f3;
+  color: var(--primary);
+  padding: 6px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .card-header {
@@ -140,6 +184,25 @@ a {
   border-radius: 20px;
   font-size: 12px;
   font-weight: bold;
+}
+
+/* remove button underlines */
+.btn-primary,
+.btn-small,
+.btn-purple,
+.btn-purple-block,
+a.btn-small,
+a.btn-purple {
+  text-decoration: none !important;
+}
+
+.btn-primary:hover,
+.btn-small:hover,
+.btn-purple:hover,
+.btn-purple-block:hover,
+a.btn-small:hover,
+a.btn-purple:hover {
+  text-decoration: none !important;
 }
 
 .btn-small {
@@ -234,7 +297,7 @@ a {
 /* --- Profile page --- */
 .profile-grid-layout {
   display: grid;
-  grid-template-columns: 350px 1fr; /* Left column fixed width, Right flexible */
+  grid-template-columns: 350px 1fr;
   gap: 24px;
   align-items: start;
 }
