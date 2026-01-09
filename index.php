@@ -1,54 +1,63 @@
 <?php
 include 'includes/header.php';
+include 'includes/db.php';
+
+// etch requests from the database
+$stmt = $pdo->query("
+    SELECT r.*, u.full_name
+    FROM requests r 
+    JOIN users u ON r.user_id = u.id 
+    ORDER BY r.created_at DESC 
+    LIMIT 5
+");
+
+$requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <main class="dashboard-container">
 
     <div class="welcome-section">
         <h2 class="page-title">Welcome, Alex!</h2>
-        <a href="create-request.php" class="btn-primary">Create New Request</a>
+        <a href="create_request.php" class="btn-primary">Create New Request</a>
     </div>
 
     <div class="dashboard-grid">
         <div class="left-column">
             <h3 class="section-title">Latest Help Requests</h3>
 
-            <div class="request-card">
-                <div class="card-header">
-                    <img src="https://i.pravatar.cc/150?img=32" alt="User" class="user-avatar">
-                    <span class="user-name">Posted by Jane Doe</span>
-                </div>
+            <?php if (count($requests) > 0): ?>
+                <?php foreach ($requests as $req): ?>
 
-                <h4>Java Project Help Needed</h4>
-                <p class="card-text">I'm stuck on implementing the observer pattern for my final project. Need someone to review my code.</p>
+                    <div class="request-card">
+                        <div class="card-header">
+                            <img src="https://i.pravatar.cc/150?u=<?= $req['user_id'] ?>" alt="User" class="user-avatar"> <span class="user-name">Posted by <?= htmlspecialchars($req['full_name']) ?></span>
 
-                <div class="card-footer">
-                    <div class="tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">OOD</span>
+                            <span class="text-small" style="color: #999; margin-left: auto;">
+                                <?= date('M d', strtotime($req['created_at'])) ?>
+                            </span>
+                        </div>
+
+                        <h4><?= htmlspecialchars($req['title']) ?></h4>
+
+                        <p class="card-text">
+                            <?= htmlspecialchars(substr($req['description'], 0, 150)) ?>...
+                        </p>
+
+                        <div class="card-footer">
+                            <div class="tags">
+                                <span class="tag"><?= htmlspecialchars($req['category']) ?></span>
+                            </div>
+                            <a href="request_details.php?id=<?= $req['id'] ?>" class="btn-small">View Details</a>
+                        </div>
                     </div>
-                    <a href="#" class="btn-small">View Details</a>
+
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="content-card" style="text-align: center; color: #666;">
+                    <p>No help requests found yet.</p>
+                    <p>Be the first to ask for help!</p>
                 </div>
-            </div>
-
-            <div class="request-card">
-                <div class="card-header">
-                    <img src="https://i.pravatar.cc/150?img=12" alt="User" class="user-avatar">
-                    <span class="user-name">Posted by John Smith</span>
-                </div>
-
-                <h4>UI/UX Feedback for Portfolio</h4>
-                <p class="card-text">Looking for feedback on my new portfolio design. Is the user flow intuitive?</p>
-
-                <div class="card-footer">
-                    <div class="tags">
-                        <span class="tag">UI/UX</span>
-                        <span class="tag">Figma</span>
-                    </div>
-                    <a href="#" class="btn-small">View Details</a>
-                </div>
-            </div>
-
+            <?php endif; ?>
         </div>
 
         <div class="right-column">
@@ -79,10 +88,7 @@ include 'includes/header.php';
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
-
-
 
 </main>

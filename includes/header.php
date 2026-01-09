@@ -28,8 +28,9 @@ if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php
 
         <nav class="header-center">
             <a href="index.php">Dashboard</a>
-            <a href="requests.php">Requests</a>
             <a href="leaderboard.php">Leaderboard</a>
+            <a href="profile.php">My Profile</a>image.png
+
         </nav>
 
         <div class="header-right">
