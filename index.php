@@ -2,7 +2,7 @@
 include 'includes/header.php';
 include 'includes/db.php';
 
-// etch requests from the database
+// fetch requests from the database
 $stmt = $pdo->query("
     SELECT r.*, u.full_name
     FROM requests r 
@@ -23,12 +23,20 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="dashboard-grid">
         <div class="left-column">
-            <h3 class="section-title">Latest Help Requests</h3>
+            <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 class="section-title" style="margin: 0;">Latest Requests</h3>
 
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="C#">C#</button>
+                    <button class="filter-btn" data-filter="Design">Design</button>
+                    <button class="filter-btn" data-filter="Web">Web</button>
+                </div>
+            </div>
             <?php if (count($requests) > 0): ?>
                 <?php foreach ($requests as $req): ?>
 
-                    <div class="request-card">
+                    <div class="request-card" data-category="<?= htmlspecialchars($req['category']) ?>">
                         <div class="card-header">
                             <img src="https://i.pravatar.cc/150?u=<?= $req['user_id'] ?>" alt="User" class="user-avatar"> <span class="user-name">Posted by <?= htmlspecialchars($req['full_name']) ?></span>
 

@@ -18,28 +18,50 @@ if (!isset($_SESSION['user_id']) && basename($_SERVER['PHP_SELF']) != 'login.php
     <title>Fontys ConnectICT</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <script src="/assets/js/main.js" defer></script>
 </head>
 
 <body>
     <header>
         <div class="header-left">
-            <h1>Fontys ConnectICT</h1>
+            <a href="index.php">
+                <h1>Fontys ConnectICT</h1>
+            </a>
         </div>
 
         <nav class="header-center">
             <a href="index.php">Dashboard</a>
             <a href="leaderboard.php">Leaderboard</a>
-            <a href="profile.php">My Profile</a>image.png
+            <a href="profile.php">My Profile</a>
 
         </nav>
 
         <div class="header-right">
-            <span class="material-symbols-outlined">notifications</span>
+            <span class="material-symbols-outlined" style="cursor: pointer;">notifications</span>
 
-            <a href="profile.php">
-                <img src="https://i.pravatar.cc/150?img=11" alt="Profile" class="profile-pic">
-            </a>
+            <div class="profile-dropdown-container">
 
-            <a href="logout.php">Logout</a>
+                <div class="profile-trigger" onclick="toggleDropdown()">
+                    <img src="https://i.pravatar.cc/150?u=<?= $_SESSION['user_id'] ?>" alt="Profile" class="profile-pic">
+                </div>
+
+                <div class="dropdown-menu" id="userMenu">
+                    <div class="menu-header">
+                        <strong><?= htmlspecialchars($_SESSION['full_name']) ?></strong>
+                    </div>
+                    <hr>
+                    <a href="profile.php" class="menu-item">
+                        <span class="material-symbols-outlined">person</span> My Profile
+                    </a>
+                    <a href="edit_profile.php" class="menu-item">
+                        <span class="material-symbols-outlined">settings</span> Settings
+                    </a>
+                    <hr>
+                    <a href="logout.php" class="menu-item danger">
+                        <span class="material-symbols-outlined">logout</span> Logout
+                    </a>
+                </div>
+
+            </div>
         </div>
     </header>

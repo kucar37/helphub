@@ -256,6 +256,7 @@ a.btn-purple:hover {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 .request-card:hover {
@@ -696,6 +697,154 @@ a.btn-purple:hover {
   font-style: italic;
   color: #999;
   font-size: 13px;
+}
+
+/* --- Filter Buttons (JS Feature) --- */
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background: #f3f4f6;
+  color: var(--text-main);
+}
+
+.filter-btn.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Profile Dropdown --- */
+
+.profile-dropdown-container {
+  position: relative;
+}
+
+.profile-trigger {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.profile-trigger:hover {
+  transform: scale(1.05);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background: white;
+  width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border);
+  z-index: 100;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.menu-header {
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.dropdown-menu hr {
+  margin: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  color: var(--text-main);
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #f3f4f6;
+  text-decoration: none !important;
+}
+
+.menu-item.danger {
+  color: #ef4444;
+}
+
+.menu-item.danger:hover {
+  background-color: #fef2f2;
+}
+
+.menu-item .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* --- Animations --- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* start lower */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* end in correct position */
+  }
+}
+
+.request-card {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.request-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.request-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.request-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.request-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.request-card:nth-child(5) {
+  animation-delay: 0.5s;
 }
 
 /* =========================================

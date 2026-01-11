@@ -51,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
                 <label for="category" class="form-label">Category / Subject</label>
                 <select id="category" name="category" class="form-input form-select">
-                    <option value="Java">Java</option>
                     <option value="C#">C#</option>
                     <option value="Web Development">Web Development</option>
                     <option value="Database">Database</option>
