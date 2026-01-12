@@ -21,17 +21,20 @@ if (!$user) {
     <div class="profile-header-card">
         <div class="profile-info">
             <div class="profile-avatar-container">
-                <img src="https://i.pravatar.cc/300?img=11" alt="<?= htmlspecialchars($user['full_name']) ?>" class="profile-avatar-lg">
+                <img src="https://i.pravatar.cc/150?u=<?= $user['id'] ?>" alt="User" class="profile-avatar-lg">
             </div>
             <div class="profile-text">
                 <h1><?= htmlspecialchars($user['full_name']) ?></h1>
                 <p><?= htmlspecialchars($user['study_program']) ?></p>
             </div>
         </div>
-        <a href="edit_profile.php" class="btn-purple icon-btn">
-            <span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
-            Edit Profile
-        </a>
+
+        <?php if ($_SESSION['user_id'] == $user['id']): ?>
+            <a href="edit_profile.php" class="btn-purple icon-btn">
+                <span class="material-symbols-outlined" style="font-size: 18px;">edit</span>
+                Edit Profile
+            </a>
+        <?php endif; ?>
     </div>
 
     <div class="profile-grid-layout">
