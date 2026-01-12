@@ -24,11 +24,13 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="dashboard-grid">
         <div class="left-column">
             <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+
                 <h3 class="section-title" style="margin: 0;">Latest Requests</h3>
+                <input type="text" id="searchInput" placeholder="Search requests...">
 
                 <div class="filter-buttons">
                     <button class="filter-btn active" data-filter="all">All</button>
-                        <button class="filter-btn" data-filter="C#">C#</button>
+                    <button class="filter-btn" data-filter="C#">C#</button>
                     <button class="filter-btn" data-filter="Design">Design</button>
                     <button class="filter-btn" data-filter="Web">Web</button>
                 </div>

@@ -47,4 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
       menu.classList.remove("show");
     }
   });
+
+  // search requests
+  const searchInput = document.getElementById("searchInput");
+
+  if (searchInput) {
+    searchInput.addEventListener("keyup", function (e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const cards = document.querySelectorAll(".request-card");
+
+      cards.forEach((card) => {
+        const title = card.querySelector("h4").textContent.toLowerCase();
+        const description = card
+          .querySelector(".card-text")
+          .textContent.toLowerCase();
+
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  }
 });

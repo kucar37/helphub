@@ -102,6 +102,8 @@ header a:hover {
   font-weight: bold;
   color: #28170b;
   margin: 0;
+  animation: fadeOutWelcome 2s ease-in-out forwards;
+  opacity: 0;
 }
 
 .section-title {
@@ -299,6 +301,16 @@ a.btn-purple:hover {
 .user-name {
   font-size: 14px;
   color: #6b4f35;
+}
+
+#searchInput {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s;
+  width: 200px;
 }
 
 /* Sidebar Specifics */
@@ -845,6 +857,26 @@ a.btn-purple:hover {
 }
 .request-card:nth-child(5) {
   animation-delay: 0.5s;
+}
+
+@keyframes fadeOutWelcome {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden; /* Ensures it doesn't block clicks after disappearing */
+  }
 }
 
 /* =========================================
